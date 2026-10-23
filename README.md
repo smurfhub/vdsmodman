@@ -1,4 +1,5 @@
 # vdsmodman
+
 Valheim Dedicated Server Mod Manager
 
 Bash script that simplifies mod maintenance on a Valheim dedicated server. Designed for Ubuntu-like distros.
@@ -8,16 +9,21 @@ It only downloads mods from [Thunderstore](https://thunderstore.io) and unzips e
 - **BepInEx plugins**: server-side mods, installed in `BepInEx/plugins`.
 - **ModSync**: controls which mods the client must have (required) and which are optional.
 
-## Requirements
-
-`yq` (mikefarah v4), `curl` and `unzip`.
+## QuickStart
 
 ```bash
-sudo apt update && sudo apt install -y curl unzip
-sudo snap install yq
+git clone https://github.com/smurfhub/vdsmodman.git
+export VALHEIM_SERVER_DIR=/path/to/valheim/server
+./vdsmodman.sh
 ```
 
-Do not use `apt install yq`: that is a different tool and is not compatible.
+## Requirements
+
+`yq`, `curl` and `unzip`.
+
+```bash
+sudo apt update && sudo apt install -y yq curl unzip
+```
 
 ## Configuration
 
@@ -52,12 +58,3 @@ client:
 | `MODSYNC_OPTIONAL_MODS_DIR` | Destination of `client.optional` mods. |
 
 Missing destination directories are created automatically.
-
-## VALHEIM_SERVER_DIR
-
-Set `VALHEIM_SERVER_DIR` with `export` before running the script, from the repository directory:
-
-```bash
-export VALHEIM_SERVER_DIR=/home/user/valheim/server
-./vdsmodman.sh
-```
