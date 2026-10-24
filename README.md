@@ -21,6 +21,10 @@ Dependencies are not resolved.
     ```bash
     export VALHEIM_SERVER_DIR=/path/to/valheim/server
     ```
+4. Grant execution permissions
+    ```bash
+    chmod +x vdsmodman.sh
+    ```
 4. Run
     ```bash
     ./vdsmodman.sh
@@ -31,7 +35,7 @@ Dependencies are not resolved.
 `git`, `yq`, `curl` and `unzip`.
 
 ```bash
-sudo apt update && sudo apt install -y git yq curl unzip
+apt install -y git yq curl unzip
 ```
 
 ## Configuration
