@@ -7,8 +7,7 @@ The script is idempotent; it clears old data and performs a fresh download on ev
 Dependencies are not resolved.
 
 > [!WARNING]  
-> Ensure all variables in mods.conf are set correctly.  
-> Script cleans up using rm -rf without asking for confirmation.
+> The script replaces the contents of BepInEx/plugins and the two ModSync folders on every run. Any file there that is not listed in mods.yml is deleted.
 
 ## QuickStart
 
@@ -43,7 +42,8 @@ apt install -y git yq curl unzip
 ### mods.yml
 
 ```yaml
-# Thunderstore format (Owner-Name-Version)
+# Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
+# Entries that do not match this format are rejected
 # BepInEx/plugins
 server:
   - ValheimModding-Jotunn-2.30.2
@@ -66,3 +66,6 @@ client:
 | `BEPINEX_PLUGINS_DIR` | Path to BepInEx/plugins |
 | `MODSYNC_REQUIRED_MODS_DIR` | Path to BepInEx/config/ModSync/required_mods |
 | `MODSYNC_OPTIONAL_MODS_DIR` | Path to BepInEx/config/ModSync/optional_mods |
+
+> [!IMPORTANT]  
+> The three destination variables must resolve to `$VALHEIM_SERVER_DIR/BepInEx/plugins`, `$VALHEIM_SERVER_DIR/BepInEx/config/ModSync/required_mods` and `$VALHEIM_SERVER_DIR/BepInEx/config/ModSync/optional_mods`. Any other path is rejected and nothing is deleted.
