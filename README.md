@@ -41,18 +41,30 @@ apt install -y git yq curl unzip
 
 ### mods.yml
 
+| List | Description |
+|---|---|
+| `both` | List of mods used by both the server and the client (required) |
+| `server` | List of mods used exclusively by the server |
+| `client.required` | List of mods used exclusively by the client (required) |
+| `client.optional` | List of mods that are optional and exclusively by the client |
+
+
 ```yaml
 # Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
 # Entries that do not match this format are rejected
+# BepInEx/plugins && BepInEx/config/ModSync
+both:
+  - ValheimModding-Jotunn-2.30.2
+
 # BepInEx/plugins
 server:
-  - ValheimModding-Jotunn-2.30.2
   - MidnightMods-NetworkPerformanceSystem-1.18.0
 
 # BepInEx/config/ModSync
 client:
   required:
     - McLovin-McPortalMetal-1.0.0
+  
   optional:
     - VentureValheim-Venture_Farm_Grid-1.0.0
 ```
@@ -66,6 +78,3 @@ client:
 | `BEPINEX_PLUGINS_DIR` | Path to BepInEx/plugins |
 | `MODSYNC_REQUIRED_MODS_DIR` | Path to BepInEx/config/ModSync/required_mods |
 | `MODSYNC_OPTIONAL_MODS_DIR` | Path to BepInEx/config/ModSync/optional_mods |
-
-> [!IMPORTANT]  
-> The three destination variables must resolve to `$VALHEIM_SERVER_DIR/BepInEx/plugins`, `$VALHEIM_SERVER_DIR/BepInEx/config/ModSync/required_mods` and `$VALHEIM_SERVER_DIR/BepInEx/config/ModSync/optional_mods`. Any other path is rejected and nothing is deleted.

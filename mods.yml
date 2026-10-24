@@ -1,9 +1,12 @@
 # Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
 # Entries that do not match this format are rejected
+# BepInEx/plugins && BepInEx/config/ModSync
+both:
+  - ValheimModding-Jotunn-2.30.2
+
 # BepInEx/plugins
 server:
-  - ValheimModding-Jotunn-2.30.2
-  - MidnightMods-NetworkPerformanceSystem-1.18.0
+  - MidnightMods-NetworkPerformanceSystem-1.18.0  
 
 # BepInEx/config/ModSync
 client:
