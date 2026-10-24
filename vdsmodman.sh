@@ -7,6 +7,8 @@ install_mods() {
   echo "Installing from $1..."
   local list_path="$1" dest_dir="$2" mod url
   local -a mods
+  [[ "$dest_dir" != "/" ]] || { echo "ERROR - invalid destination: $dest_dir" >&2; return 1; }
+  rm -rf "$dest_dir" || { echo "ERROR - cleanup failed: $dest_dir" >&2; return 1; }
   mapfile -t mods < <(yq -r "${list_path}[]" ./mods.yml)
   for mod in "${mods[@]}"; do
     url="$THUNDERSTORE_DOWNLOAD_URL${mod//-//}"

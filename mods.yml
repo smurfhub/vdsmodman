@@ -1,7 +1,10 @@
+# Thunderstore format (Owner-Name-Version)
+# BepInEx/plugins
 server:
   - ValheimModding-Jotunn-2.30.2
   - MidnightMods-NetworkPerformanceSystem-1.18.0
 
+# BepInEx/config/ModSync
 client:
   required:
     - McLovin-McPortalMetal-1.0.0
