@@ -34,7 +34,7 @@ install_thunderstore_mods() {
   for mod in "${mods[@]}"; do
     if [[ ! "$mod" =~ ^([^-]+)-(.+)-([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
       printf 'Invalid Thunderstore mod format: %s\n' "$mod" >&2
-      return 1
+      continue
     fi
 
     local owner="${BASH_REMATCH[1]}"
@@ -45,11 +45,11 @@ install_thunderstore_mods() {
 
     if ! curl -fsSL -o "$archive" "$url"; then
       rm -f "$archive"
-      return 1
+      continue
     fi
     if ! unzip -oq "$archive" -d "$path/${mod}"; then
       rm -f "$archive"
-      return 1
+      continue
     fi
     rm -f "$archive"
   done
@@ -70,7 +70,7 @@ install_github_mods() {
   for mod in "${mods[@]}"; do
     if [[ ! "$mod" =~ ^([^-]+)-(.+)-([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
       printf 'Invalid GitHub mod format: %s\n' "$mod" >&2
-      return 1
+      continue
     fi
 
     local owner="${BASH_REMATCH[1]}"
@@ -82,11 +82,11 @@ install_github_mods() {
 
     if ! curl -fsSL -o "$archive" "$url"; then
       rm -f "$archive"
-      return 1
+      continue
     fi
     if ! unzip -oq "$archive" -d "$path/${mod}"; then
       rm -f "$archive"
-      return 1
+      continue
     fi
     rm -f "$archive"
   done
