@@ -28,9 +28,9 @@ export VALHEIM_SERVER_DIR="/path/to/valheim/server"
     ```bash
     #!/usr/bin/env bash
 
-     # export MODS_CONF="./mods.conf"
+     # export MODS_CONF="/path/to/mods.conf"
     export VALHEIM_SERVER_DIR="/path/to/valheim/server"
-    export MODS_YML="./mods.yml"
+    export MODS_YML="/path/to/mods.yml"
 
     ./vdsmodman/vdsmodman.sh
     ```
