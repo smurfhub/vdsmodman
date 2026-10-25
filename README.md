@@ -11,22 +11,33 @@ Dependencies are not resolved.
 
 ## QuickStart
 
-1. Download
+> [!NOTE]  
+> Creating a launcher outside the repository is recommended.
+> - Allows you to configure the `VALHEIM_SERVER_DIR` environment variable.
+> - Allows you to update the repository using `git pull` without conflicts.
+
+1. Clone the repository:
     ```bash
     git clone https://github.com/smurfhub/vdsmodman.git
     ```
-2. Update mods.yml and mods.conf
-3. Set server env var
+
+2. Create a `launcher.sh` script outside the repository directory:
     ```bash
-    export VALHEIM_SERVER_DIR=/path/to/valheim/server
+    #!/usr/bin/env bash
+
+    export VALHEIM_SERVER_DIR="/path/to/valheim/server"
+    ./vdsmodman/vdsmodman.sh
     ```
-4. Grant execution permissions
+
+3. Grant execution permissions:
     ```bash
-    chmod +x vdsmodman.sh
+    chmod +x ./vdsmodman/vdsmodman.sh
+    chmod +x ./launcher.sh
     ```
-4. Run
+
+4. Run:
     ```bash
-    ./vdsmodman.sh
+    ./launcher.sh
     ```
 
 ## Requirements
