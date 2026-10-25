@@ -1,17 +1,40 @@
 # Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
-# Entries that do not match this format are rejected
-# BepInEx/plugins && BepInEx/config/ModSync
-both:
-  - ValheimModding-Jotunn-2.30.2
+github:
+  both:
+    - Smurfhub-ModSync-0.3.3
 
-# BepInEx/plugins
-server:
-  - MidnightMods-NetworkPerformanceSystem-1.18.0  
+thunderstore:
+  both:
+    - ValheimModding-Jotunn-2.30.2
+    - ValheimModding-YamlDotNet-16.3.1
+    - ValheimModding-JsonDotNET-13.0.4
+    - ZenDragon-Zen_ModLib-1.14.22
+    - Chazman-RunicCharacterVault-1.0.4
+    - TXC-SkillLoss-1.2.0
+    - ZenDragon-ZenBossStone-1.0.3
+    - MidnightMods-AchievementEnabler-0.5.1
+    - VentureValheim-Venture_Multiplayer_Tweaks-1.0.0
+    - valph-valPHPvPTweaks-2.5.0
+    - warpalicious-More_World_Locations_AIO-5.2.2
+    - under2ker-LivingFactions-0.7.0
+    - Mushroom_Vikings-VegvisirCompass-1.8.0
+    - Advize-PlantEverything-1.21.4
+    - Odinrealm-OdinRealmFishing-0.89.0
+    - Hardwire99-LetsGo-1.0.0
+    - KalellModding-BoatAnchor-1.3.3
+    - MSchmoecker-MultiUserChest-0.6.2
+    - Northarun-Marketplace-1.5.0
+    - Landoria-Socialize-1.0.16
 
-# BepInEx/config/ModSync
-client:
-  required:
-    - McLovin-McPortalMetal-1.0.0
-  
-  optional:
-    - VentureValheim-Venture_Farm_Grid-1.0.0
+  server:
+    - ArgusMagnus-ServersideQoL-2.4.3
+    - ArgusMagnus-ServersideQoL_PrefabConfigurator-2.3.0
+    - ArgusMagnus-ServersideQoL_ContainerSizes-2.0.11
+    - ArgusMagnus-ServersideQoL_JustSleep-2.0.11
+
+  client:
+    required:
+      - Goldenrevolver-Quick_Stack_Store_Sort_Trash_Restock-1.4.16
+    
+    optional:
+      - ZenDragon-ZenUI-1.9.3

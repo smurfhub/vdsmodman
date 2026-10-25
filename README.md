@@ -41,33 +41,22 @@ apt install -y git yq curl unzip
 
 ### mods.yml
 
-| List | Description |
-|---|---|
-| `both` | List of mods used by both the server and the client (required) |
-| `server` | List of mods used exclusively by the server |
-| `client.required` | List of mods used exclusively by the client (required) |
-| `client.optional` | List of mods that are optional and exclusively by the client |
-
+Each source has the same lists: `both`, `server`, `client.required`, and
+`client.optional`.
 
 ```yaml
-# Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
-# Entries that do not match this format are rejected
-# BepInEx/plugins && BepInEx/config/ModSync
-both:
-  - ValheimModding-Jotunn-2.30.2
+github:
+  both:
+    - Smurfhub-ModSync-0.3.3
 
-# BepInEx/plugins
-server:
-  - MidnightMods-NetworkPerformanceSystem-1.18.0
-
-# BepInEx/config/ModSync
-client:
-  required:
-    - McLovin-McPortalMetal-1.0.0
-  
-  optional:
-    - VentureValheim-Venture_Farm_Grid-1.0.0
+thunderstore:
+  both:
+    - ValheimModding-Jotunn-2.30.2
 ```
+
+Thunderstore entries use the `Owner-Name-Version` format. GitHub entries use
+`Owner-Repository-Version`; the script downloads the release asset named
+`Owner-Repository-Version.zip` from that repository's matching release tag.
 
 ### mods.conf
 
