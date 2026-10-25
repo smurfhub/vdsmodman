@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-MODS_FILE="$SCRIPT_DIR/mods.yml"
+MODS_CONF="${MODS_CONF:-$SCRIPT_DIR/mods.conf}"
+MODS_YML="${MODS_YML:-$SCRIPT_DIR/mods.yml}"
 if ! DOWNLOAD_DIR="$(mktemp -d)"; then
   printf 'Unable to create temporary download directory\n' >&2
   exit 1
 fi
 trap 'rm -rf "$DOWNLOAD_DIR"' EXIT
 
-source "$SCRIPT_DIR/mods.conf"
+source "$MODS_CONF"
 
 # Usage: clear_mod_directory <path>
 clear_mod_directory() {
@@ -26,7 +27,7 @@ install_thunderstore_mods() {
 
   mapfile -t mods < <(
       for yq_path in "${yq_paths[@]}"; do
-          yq -r "(${yq_path} // [])[]" "$MODS_FILE"
+          yq -r "(${yq_path} // [])[]" "$MODS_YML"
       done | sort -u
   )
 
@@ -62,7 +63,7 @@ install_github_mods() {
 
   mapfile -t mods < <(
       for yq_path in "${yq_paths[@]}"; do
-          yq -r "(${yq_path} // [])[]" "$MODS_FILE"
+          yq -r "(${yq_path} // [])[]" "$MODS_YML"
       done | sort -u
   )
 

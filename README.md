@@ -7,25 +7,31 @@ The script is idempotent; it clears old data and performs a fresh download on ev
 Dependencies are not resolved.
 
 > [!WARNING]  
-> The script replaces the contents of BepInEx/plugins and the two ModSync folders on every run. Any file there that is not listed in mods.yml is deleted.
+> The script replaces the contents of BepInEx/plugins and the two ModSync folders on every run. Any file there that is not listed in the configured mods YAML file is deleted.
 
 ## QuickStart
 
-> [!NOTE]  
-> Creating a launcher outside the repository is recommended.
-> - Allows you to configure the `VALHEIM_SERVER_DIR` environment variable.
-> - Allows you to update the repository using `git pull` without conflicts.
+```bash
+git clone https://github.com/smurfhub/vdsmodman.git
+export VALHEIM_SERVER_DIR="/path/to/valheim/server"
+./vdsmodman.sh
+```
+
+## Recommended
 
 1. Clone the repository:
     ```bash
     git clone https://github.com/smurfhub/vdsmodman.git
     ```
 
-2. Create a `launcher.sh` script outside the repository directory:
+2. Create a launcher script outside the repository directory:
     ```bash
     #!/usr/bin/env bash
 
+     # export MODS_CONF="./mods.conf"
     export VALHEIM_SERVER_DIR="/path/to/valheim/server"
+    export MODS_YML="./mods.yml"
+
     ./vdsmodman/vdsmodman.sh
     ```
 
@@ -79,6 +85,8 @@ thunderstore:
 
 | Variable | Description |
 |---|---|
+| `MODS_CONF` | Path to the configuration file (defaults to `mods.conf` in the script directory) |
+| `MODS_YML` | Path to the mods YAML file (defaults to `mods.yml` in the script directory) |
 | `VALHEIM_SERVER_DIR` | Path to the server (Defaults to `.` if not set) |
 | `BEPINEX_PLUGINS_DIR` | Path to BepInEx/plugins |
 | `MODSYNC_REQUIRED_MODS_DIR` | Path to BepInEx/config/ModSync/required_mods |
