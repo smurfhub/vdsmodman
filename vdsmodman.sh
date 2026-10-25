@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-source ./mods.conf
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+MODS_FILE="$SCRIPT_DIR/mods.yml"
+if ! DOWNLOAD_DIR="$(mktemp -d)"; then
+  printf 'Unable to create temporary download directory\n' >&2
+  exit 1
+fi
+trap 'rm -rf "$DOWNLOAD_DIR"' EXIT
+
+source "$SCRIPT_DIR/mods.conf"
 
 # Usage: clear_mod_directory <path>
 clear_mod_directory() {
@@ -18,7 +26,7 @@ install_thunderstore_mods() {
 
   mapfile -t mods < <(
       for yq_path in "${yq_paths[@]}"; do
-          yq -r "(${yq_path} // [])[]" ./mods.yml
+          yq -r "(${yq_path} // [])[]" "$MODS_FILE"
       done | sort -u
   )
 
@@ -31,7 +39,7 @@ install_thunderstore_mods() {
     local owner="${BASH_REMATCH[1]}"
     local name="${BASH_REMATCH[2]}"
     local version="${BASH_REMATCH[3]}"
-    local archive="${mod}.zip"
+    local archive="$DOWNLOAD_DIR/${mod}.zip"
     local url="https://thunderstore.io/package/download/${owner}/${name}/${version}"
 
     if ! curl -fsSL -o "$archive" "$url"; then
@@ -54,7 +62,7 @@ install_github_mods() {
 
   mapfile -t mods < <(
       for yq_path in "${yq_paths[@]}"; do
-          yq -r "(${yq_path} // [])[]" ./mods.yml
+          yq -r "(${yq_path} // [])[]" "$MODS_FILE"
       done | sort -u
   )
 
@@ -67,8 +75,9 @@ install_github_mods() {
     local owner="${BASH_REMATCH[1]}"
     local repository="${BASH_REMATCH[2]}"
     local version="${BASH_REMATCH[3]}"
-    local archive="${mod}.zip"
-    local url="https://github.com/${owner}/${repository}/releases/download/${version}/${archive}"
+    local archive_name="${mod}.zip"
+    local archive="$DOWNLOAD_DIR/$archive_name"
+    local url="https://github.com/${owner}/${repository}/releases/download/${version}/${archive_name}"
 
     if ! curl -fsSL -o "$archive" "$url"; then
       rm -f "$archive"
