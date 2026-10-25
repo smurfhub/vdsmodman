@@ -41,10 +41,8 @@ apt install -y git yq curl unzip
 
 ### mods.yml
 
-Each source has the same lists: `both`, `server`, `client.required`, and
-`client.optional`.
-
 ```yaml
+# Thunderstore format (Owner-Name-X.Y.Z), e.g. ValheimModding-Jotunn-2.30.2
 github:
   both:
     - Smurfhub-ModSync-0.3.3
@@ -52,17 +50,24 @@ github:
 thunderstore:
   both:
     - ValheimModding-Jotunn-2.30.2
-```
+    - ZenDragon-Zen_ModLib-1.14.22
+    - ZenDragon-ZenBossStone-1.0.3
 
-Thunderstore entries use the `Owner-Name-Version` format. GitHub entries use
-`Owner-Repository-Version`; the script downloads the release asset named
-`Owner-Repository-Version.zip` from that repository's matching release tag.
+  server:
+    - ArgusMagnus-ServersideQoL-2.4.3
+
+  client:
+    required:
+      - Goldenrevolver-Quick_Stack_Store_Sort_Trash_Restock-1.4.16
+    
+    optional:
+      - ZenDragon-ZenUI-1.9.3
+```
 
 ### mods.conf
 
 | Variable | Description |
 |---|---|
-| `THUNDERSTORE_DOWNLOAD_URL` | Thunderstore download URL |
 | `VALHEIM_SERVER_DIR` | Path to the server (Defaults to `.` if not set) |
 | `BEPINEX_PLUGINS_DIR` | Path to BepInEx/plugins |
 | `MODSYNC_REQUIRED_MODS_DIR` | Path to BepInEx/config/ModSync/required_mods |

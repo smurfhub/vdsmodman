@@ -32,7 +32,7 @@ install_thunderstore_mods() {
     local name="${BASH_REMATCH[2]}"
     local version="${BASH_REMATCH[3]}"
     local archive="${mod}.zip"
-    local url="${THUNDERSTORE_DOWNLOAD_URL}${owner}/${name}/${version}"
+    local url="https://thunderstore.io/package/download/${owner}/${name}/${version}"
 
     if ! curl -fsSL -o "$archive" "$url"; then
       rm -f "$archive"
